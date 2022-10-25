@@ -1,0 +1,21 @@
+.logo {
+    display:inline-block;
+}
+.menu ul {
+    width:auto;
+    text-align:center;
+}
+.menu ul li {
+    font-size:18px;
+    list-style-type: none;
+    display:inline-block;
+    padding: 0 20px 0 20px;
+}
+.menu ul li:hover {
+    border: 1px solid rgb(167, 147, 147);
+    color:rgb(212, 147, 157);
+    border-radius: 30px;
+}
+.menu ul a {
+    color:black;
+}
