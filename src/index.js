@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
+import 'bootstrap/dist/css/bootstrap.css'
+import './styles/index.css';
+import 'bootstrap/dist/js/bootstrap.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -2,3 +2,6 @@ body {
   padding: 0 10px 0 10px;
   background-color: rgb(243, 223, 223);
 }
+svg {
+  margin:10px;
+}

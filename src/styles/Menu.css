@@ -1,21 +1,24 @@
-.logo {
-    display:inline-block;
+.Menu img {
+    margin:10px;
 }
-.menu ul {
+.Menu {
+    margin-bottom: 30px;
+}
+.Menu ul {
     width:auto;
     text-align:center;
 }
-.menu ul li {
+.Menu ul li {
     font-size:18px;
     list-style-type: none;
     display:inline-block;
-    padding: 0 20px 0 20px;
+    padding: 0 40px 0 40px;
 }
-.menu ul li:hover {
+.Menu ul li:hover {
     border: 1px solid rgb(167, 147, 147);
     color:rgb(212, 147, 157);
     border-radius: 30px;
 }
-.menu ul a {
+.Menu ul a {
     color:black;
 }

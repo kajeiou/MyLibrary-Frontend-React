@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import bookImg from '../assets/book.png'
 
 export default function Books() {
     const [books, setBooks]= useState([
@@ -7,6 +8,7 @@ export default function Books() {
             empruntable:true
         },
     ]);
+    const [pop, setPop] = useState(false)
 
     useEffect(() => {
         // GET request using fetch inside useEffect React hook
@@ -19,15 +21,27 @@ export default function Books() {
     
 
     return (
-        <div className="bookList">
-            <h4>Liste des livres :</h4>
-
-            <ul>
+        <div className="Books">
+            <div className='row'>
                 {books.map((book, index) => 
-                    <li key={index}>
-                        Livre n°{index} -({book.id}) {book.bookName} ISBN : {book.isbn} Stock : {book.stock} Prix : {book.price}
-                    </li>
+                <div className='col'>
+                    <div className="card" >
+                        <img className="card-img-top" src={bookImg} alt="Card image cap" />
+                        <div className="card-body">
+                            <h5 className="card-title">Book {index} {book.id} {book.bookName}</h5>
+                            <p className="card-text">ISBN : {book.isbn} Stock : {book.stock} Prix : {book.price}</p>
+                            <button  className="btn btn-primary">Voir ce livre</button>
+                        </div>
+                    </div>
+                </div>
                 )}
+                
+
+                
+            </div>
+            
+            <ul>
+               
             </ul>
         </div>
         
