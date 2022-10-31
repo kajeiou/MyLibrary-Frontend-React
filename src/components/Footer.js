@@ -69,7 +69,7 @@ export default function Footer() {
           <p><i className="fas fa-home me-3"></i> Paris, France</p>
           <p>
             <i className="fas fa-envelope me-3"></i>
-            nabilkajeiou@example.com
+            nabilkajeiou@gmail.com
           </p>
           <p><i className="fas fa-phone me-3"></i> + 33 6 12 34 56 78</p>
         </div>
