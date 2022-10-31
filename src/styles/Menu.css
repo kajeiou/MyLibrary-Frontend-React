@@ -1,7 +1,8 @@
 .Menu img {
-    margin:10px;
+    margin:10px 20px 0 20px;
 }
-.Menu {
+.Menu nav {
+    border-radius: 15px;
     margin-bottom: 30px;
 }
 .Menu ul {
@@ -15,10 +16,12 @@
     padding: 0 40px 0 40px;
 }
 .Menu ul li:hover {
-    border: 1px solid rgb(167, 147, 147);
-    color:rgb(212, 147, 157);
+    border-bottom: 1px solid rgb(167, 147, 147);
     border-radius: 30px;
 }
 .Menu ul a {
     color:black;
 }
+.Menu button:focus {
+    border:0px;
+ }
