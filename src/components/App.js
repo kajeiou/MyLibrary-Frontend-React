@@ -9,6 +9,7 @@ import { hasAuthenticated } from '../services/AuthApi';
 import Auth from '../contexts/Auth';
 import AuthenticatedRoute from './AuthenticatedRoute';
 import MyProfile from './MyProfile';
+import Footer from './Footer';
 
 
 function App() {
@@ -18,21 +19,22 @@ function App() {
   return (
     <Auth.Provider value={{isAuthenticated, setIsAuthenticated}} >
       <div className='App'>
-      <script>
-          <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-          <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-      </script>
+        <script>
+            <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+            <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        </script>
 
         <Menu/>
+        
         <div className="container text-center">
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/myprofile" element={<MyProfile />} />
-
           </Routes>
           <br></br>
+          <Footer/>
         </div>
       </div>
     </Auth.Provider>

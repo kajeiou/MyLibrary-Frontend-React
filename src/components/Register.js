@@ -62,7 +62,9 @@ export default function Register() {
                     ''
                     }
                     <div className="card-body">
-                        <h5 className="card-title">Déjà inscrit ? <Link to="../login" className='btn btn-secondary' >Connectez vous!</Link></h5>
+                        <h5 className="card-title">Déjà inscrit ? <Link to="../login" className='btn btn-secondary' >
+                            
+                            Connectez vous!</Link></h5>
                         <br/>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group row">

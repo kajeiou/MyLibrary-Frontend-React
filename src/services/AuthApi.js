@@ -6,8 +6,10 @@ export function hasAuthenticated() {
     const result = token ? tokenIsValid(token) : false;
 
     if(result === false) {
+        console.log("remove token")
         removeItem("MyLibraryToken")
     }
+    console.log(result)
     return result
 }
 
@@ -33,6 +35,13 @@ export function logout() {
     removeItem("MyLibraryToken")
 }
 
-function tokenIsValid() {
+function tokenIsValid(token) {
+    const { exp: expiration } = jwtDecode(token);
+
+    if (expiration * 1000 > new Date().getTime()) {
+        return true;
+    }
+
+    return false;
 
 }
