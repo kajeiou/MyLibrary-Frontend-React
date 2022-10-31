@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Auth from '../contexts/Auth';
 import { login } from '../services/AuthApi';
+import { toast } from 'react-toastify';
 
 export default function Login() {
     const {isAuthenticated, setIsAuthenticated} = useContext(Auth)
@@ -26,6 +27,7 @@ export default function Login() {
         console.log(response)
         setIsAuthenticated(response);
         setMessage({type:"success", message:"Vous vous êtes connecté avec succès."})
+        toast.success("Bienvenue ! Tu t'es connecté.")
 
         } catch ({ response }) {
             setMessage({type:"danger", message:"Les identifiants renseignés sont incorrectes."})

@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../styles/App.css';
 import Menu from './Menu.js'
 import { Route, Routes } from 'react-router-dom';
@@ -37,6 +39,7 @@ function App() {
           <Footer/>
         </div>
       </div>
+      <ToastContainer />
     </Auth.Provider>
     
   );
