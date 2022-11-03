@@ -3,19 +3,19 @@ import { useForm,  } from "react-hook-form"
 import '../styles/Register.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import Auth from '../contexts/Auth';
+import UserC from '../contexts/UserC';
 
 export default function Register() {
-    const {isAuthenticated} = useContext(Auth)
+    const {userId} = useContext(UserC)
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [message, setMessage] = useState(0)
 
     useEffect( ()=> {
-        if(isAuthenticated) {
+        if(userId) {
             navigate("/myprofile", { replace: true })
         }
-    },[navigate,isAuthenticated])
+    },[navigate,userId])
 
     const onSubmit = async dataForm => {
 
@@ -71,12 +71,9 @@ export default function Register() {
                                 <label htmlFor="userName" className="col-sm-2 col-form-label">Nom d'utilisateur</label>
                                 <div className="col-sm-10">
                                     <input name="userName" type="text" className="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Entrez un nom d'utilisateur" {...register("userName", {required:'Nom d\'utilisateur obligatoire'})}  />
-                                    
                                     {errors.userName && errors.userName.type === "required" && <p className="text-white bg-danger ">
                                         Nom d'utilisateur non renseigné
                                     </p>}
-                                    
-                                    
                                 </div>
                             </div>
                     

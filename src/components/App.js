@@ -8,18 +8,17 @@ import Login from './Login';
 import Home from './Home';
 import { useState } from 'react';
 import { hasAuthenticated } from '../services/AuthApi';
-import Auth from '../contexts/Auth';
-import AuthenticatedRoute from './AuthenticatedRoute';
 import MyProfile from './MyProfile';
 import Footer from './Footer';
+import UserC from '../contexts/UserC';
 
 
 function App() {
 
-  const[isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
+  const[userId, setUserId] = useState(hasAuthenticated())
 
   return (
-    <Auth.Provider value={{isAuthenticated, setIsAuthenticated}} >
+    <UserC.Provider value={{userId, setUserId}} >
       <div className='App'>
         <script>
             <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -40,7 +39,7 @@ function App() {
         </div>
       </div>
       <ToastContainer />
-    </Auth.Provider>
+    </UserC.Provider>
     
   );
 }

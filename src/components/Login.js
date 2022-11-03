@@ -2,30 +2,32 @@ import React,{ useEffect,useContext, useState } from 'react';
 import { useForm } from "react-hook-form"
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import Auth from '../contexts/Auth';
 import { login } from '../services/AuthApi';
 import { toast } from 'react-toastify';
+import UserC from '../contexts/UserC';
 
 export default function Login() {
-    const {isAuthenticated, setIsAuthenticated} = useContext(Auth)
+    const {userId, setUserId} = useContext(UserC)
+    
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [message, setMessage] = useState(0)
 
     useEffect( ()=> {
-        if(isAuthenticated) {
+        if(userId) {
             setTimeout(function(){
                 navigate("/myprofile", { replace: true })
             },2000); 
         }
-    },[navigate,isAuthenticated])
+    },[navigate,userId])
 
     const onSubmit = async dataForm => {
 
     try {
         const response = await login(dataForm);
         console.log(response)
-        setIsAuthenticated(response);
+        //setIsAuthenticated(response);
+        setUserId(response)
         setMessage({type:"success", message:"Vous vous êtes connecté avec succès."})
         toast.success("Bienvenue ! Tu t'es connecté.")
 

@@ -2,15 +2,17 @@ import jwtDecode from "jwt-decode"
 import { getItem, addItem, removeItem } from "./LocaleStorage"
 
 export function hasAuthenticated() {
+    
     const token = getItem("MyLibraryToken")
     const result = token ? tokenIsValid(token) : false;
 
     if(result === false) {
-        console.log("remove token")
         removeItem("MyLibraryToken")
     }
-    console.log(result)
-    return result
+    else {
+        return getUserId()
+    }
+    
 }
 
 export async function login(dataForm) {
@@ -27,9 +29,14 @@ export async function login(dataForm) {
         }),
     })
     .then(response => response.json())
-    .then(data => {addItem('MyLibraryToken', data.token); return true;});
+    .then(data => {addItem('MyLibraryToken', data.token);addItem('MyLibraryUserId', data.userId); return data.userId;});
 
-
+}
+export function getToken() {
+    return getItem("MyLibraryToken")
+}
+export function getUserId() {
+    return getItem("MyLibraryUserId")
 }
 export function logout() {
     removeItem("MyLibraryToken")

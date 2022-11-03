@@ -1,16 +1,22 @@
-import React,{ useEffect,useContext } from 'react';
+import React,{ useEffect, useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
-import Auth from '../contexts/Auth';
+import UserC from '../contexts/UserC';
+import { getToken } from '../services/AuthApi';
+import { getUser } from '../services/UserApi';
 
 export default function MyProfile() {
-    const {isAuthenticated} = useContext(Auth)
+    //const {isAuthenticated} = useContext(Auth)
+    const {userId} = useContext(UserC)
     const navigate = useNavigate();
+    const [user, setUser]= useState([null]);
 
     useEffect( ()=> {
-        if(!isAuthenticated) {
+        if(!userId) {
             navigate("/login", { replace: true })
         }
-    },[navigate,isAuthenticated])
+        getUser(userId,getToken())
+            .then(data => setUser(data));
+    },[navigate,userId])
 
     return(
         <div className="container w-75">
@@ -19,29 +25,48 @@ export default function MyProfile() {
                     <h5 className="card-header">Mon profil</h5>
                 
                     <div className="card-body">
-                        <div className="form-group row">
-                            <label htmlFor="email" className="col-sm-2 col-form-label">Nom d'utilisateur</label>
-                            <div className="col-sm-10">
-                            <span className="badge bg-light text-black p-3 m-3">Username</span>
-                                <small id="emailHelp" className="form-text text-muted">Nom visible par les autres utilisateurs</small>
+
+                        <div className="form-group row m-3">
+                            <div className="col">
+                                <label htmlFor="email" className=" col-form-label">Nom d'utilisateur</label>
                             </div>
-                        </div>
-                        <br/>
-                        <div className="form-group row">
-                            <label htmlFor="email" className="col-sm-2 col-form-label">Adresse email</label>
+                            <div className="col">
+                                <span className="badge bg-light text-black p-3 d-block">{user.userName}</span>
+                            </div>
+                            <div className="col">
+                                <span id="emailHelp" className="form-text text-muted">Nom visible par les autres utilisateurs</span>
+                            </div>
                             
-                            <div className="col-sm-10">
-                                <span className="badge bg-light text-black p-3 m-3">Adresseutilisateur@gmail.com</span>
-                                <small id="emailHelp" className="form-text text-muted">Identifiant de connexion</small>
-                            </div>
                         </div>
                         <br/>
-                        <div className="form-group row">
-                            <label htmlFor="password" className="col-sm-2 col-form-label">Rôle</label>
-                            <div className="col-sm-10">
-                                <span className="badge bg-success p-3 m-3">Administrateur</span>
-                                <small id="passwordHelp" className="form-text text-muted">Minimum 6 caractères, un chiffre, une majuscule</small>
+                        <div className="form-group row m-3">
+                            <div className="col">
+                                <label htmlFor="email" className=" col-form-label ">Adresse email</label>
                             </div>
+                            <div className="col">
+                                <span className="badge bg-light text-black p-3 d-block">{user.email}</span>
+                            </div>
+                            <div className="col">
+                                <span id="emailHelp" className="form-text text-muted">Identifiant de connexion</span>
+                            </div>
+                            
+                        </div>
+                        <br/>
+                        <div className="form-group row m-3">
+                            <div className="col">
+                                <label htmlFor="password" className=" col-form-label">Rôle</label>
+                            </div>
+                            <div className="col">
+                                {user.isAdmin  ?
+                                    <span className="badge bg-success p-3 d-block ">Administrateur</span>
+                                    : <span className="badge bg-danger p-3 d-block ">Non Admin</span>
+                                }
+                            </div>
+                            <div className="col">
+                                
+                            </div>
+                            
+
                         </div>
                         
                         <br/>
