@@ -1,9 +1,13 @@
 import Modal from 'react-modal';
-import React, {  useState } from 'react';
-import { useForm  } from "react-hook-form"
+import React, {  useState, useContext } from 'react';
+import { useForm  } from "react-hook-form";
+import UserC from '../contexts/UserC';
+import { createBookApi } from '../services/BookApi';
+import { getToken } from '../services/AuthApi';
+import { toast } from 'react-toastify';
 
-export default function BookAdd() {
-         
+export default function BookAdd(props) {
+    const {userId, setUserId} = useContext(UserC)
     const [modalIsOpen, setIsOpen] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [message, setMessage] = useState(0)
@@ -16,7 +20,6 @@ export default function BookAdd() {
         setIsOpen(false);
 
     }
-        
     const customStyles = {
         content: {
           top: '50%',
@@ -25,11 +28,25 @@ export default function BookAdd() {
           bottom: 'auto',
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
+          width: '50%'
         },
       };
     const onSubmit = async dataForm => {
-        console.log(dataForm)
-        setIsOpen(false);
+        try {
+            const response = await createBookApi(getToken(),dataForm);
+            //console.log(response)
+            //setIsAuthenticated(response);
+            //setMessage({type:"success", message:"Vous vous êtes connecté avec succès."})
+            toast.success("Un nouveau livre a été ajouté")
+            closeModal();
+            props.addBook(response)
+            
+    
+        } catch ({ response }) {
+            setMessage({type:"danger", message:"Une erreur est survenue"})
+        }
+        
+        
     }   
       
     return(
@@ -62,7 +79,7 @@ export default function BookAdd() {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group row">
                                 <label htmlFor="bookName" className="col col-form-label">Nom du livre</label>
-                                <div className="col text-center">
+                                <div className="col-8 text-center">
                                     <input name="bookName" type="text" className="form-control" id="bookName" aria-describedby="bookNameHelp" placeholder="Entrez un nom" {...register("bookName", {required:'Nom du livre obligatoire'})}  />
                                     {errors.bookName && errors.bookName.type === "required" && <p className="text-white bg-danger ">
                                         Nom du livre non renseigné
@@ -72,7 +89,7 @@ export default function BookAdd() {
                             <br/>
                             <div className="form-group row">
                                 <label htmlFor="price" className="col col-form-label">Prix</label>
-                                <div className="col text-center">
+                                <div className="col-8 text-center">
                                     <input name="price" type="number" className="form-control" id="price" aria-describedby="bookPriceHelp" placeholder="Entrez un prix" {...register("price", {required:'Prix du livre obligatoire'})}  />
                                     {errors.price && errors.price.type === "required" && <p className="text-white bg-danger ">
                                         Prix non renseigné
@@ -82,8 +99,8 @@ export default function BookAdd() {
                             <br/>
                             <div className="form-group row ">
                                 <label htmlFor="stock" className="col col-form-label">Stock</label>
-                                <div className="col text-center">
-                                    <input name="stock" type="number" className="form-control" id="stock" aria-describedby="bookStockHelp" placeholder="Entrez un nombre" {...register("stock", {required:'Stock du livre obligatoire'})}  />
+                                <div className="col-8 text-center">
+                                    <input name="stock" type="number" className="form-control" id="stock" aria-describedby="bookStockHelp" placeholder="Entrez un stock" {...register("stock", {required:'Stock du livre obligatoire'})}  />
                                     {errors.stock && errors.stock.type === "required" && <p className="text-white bg-danger ">
                                         Stock non renseigné
                                     </p>}
@@ -92,7 +109,7 @@ export default function BookAdd() {
                             <br/>
                             <div className="form-group row">
                                 <label htmlFor="stock" className="col col-form-label">ISBN </label>
-                                <div className="col text-center">
+                                <div className="col-8 text-center">
                                     <input name="isbn" type="text" className="form-control" id="isbn" aria-describedby="bookStockHelp" placeholder="Entrez un ISBN" {...register("isbn", {required:'ISBN du livre obligatoire'})}  />
                                     {errors.isbn && errors.isbn.type === "required" && <p className="text-white bg-danger ">
                                         ISBN non renseigné
@@ -101,8 +118,8 @@ export default function BookAdd() {
                             </div>
                             <br/>
                             <div className="form-group row">
-                                <label htmlFor="stock" className="col col-form-label">Nombre de pages</label>
-                                <div className="col text-center">
+                                <label htmlFor="stock" className="col col-form-label">Pages</label>
+                                <div className="col-8 text-center">
                                     <input name="pageCount" type="number" className="form-control" id="stock" aria-describedby="bookStockHelp" placeholder="Entrez un nombre" {...register("pageCount", {required:'Nombre de pages du livre obligatoire'})}  />
                                     {errors.stock && errors.stock.type === "required" && <p className="text-white bg-danger ">
                                         Nombre de pages non renseigné
@@ -110,15 +127,15 @@ export default function BookAdd() {
                                 </div>
                             </div>
                             <br></br>
-                            <div class="row">
-                                <div class="col">
+                            <div className="row">
+                                <div className="col">
                                     <button className="btn btn-block btn-danger w-100"onClick={closeModal}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x m-0" viewBox="0 0 16 16">
                                             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                         </svg>
                                     </button>
                                 </div>
-                                <div class="col-8">
+                                <div className="col-8">
                                     <button className="btn btn-success btn-block w-100" type="submit">
                                         Ajouter ce nouveau livre
                                     </button>

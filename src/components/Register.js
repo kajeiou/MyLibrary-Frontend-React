@@ -4,12 +4,15 @@ import '../styles/Register.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import UserC from '../contexts/UserC';
+import { registerApi } from '../services/AuthApi';
+import { toast } from 'react-toastify';
 
 export default function Register() {
     const {userId} = useContext(UserC)
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [message, setMessage] = useState(0)
+
 
     useEffect( ()=> {
         if(userId) {
@@ -18,31 +21,15 @@ export default function Register() {
     },[navigate,userId])
 
     const onSubmit = async dataForm => {
-
-        const userName = dataForm.userName.charAt(0).toUpperCase() + dataForm.userName.slice(1);
         try {
-          let res = await fetch("http://localhost:2000/users/register", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                userName: userName,
-                email: dataForm.email,
-                password: dataForm.password,
-                isAdmin: false
-            }),
-          });
-          console.log(res)
-          if (res.status === 200) {
+            const response = await registerApi(dataForm);
+            console.log(response)
+            toast.success("Bienvenue ! Tu t'es connecté.")
             console.log("User created successfully");
             setMessage({type:"success", message:"Votre compte avec l'adresse email "+ dataForm.email +" a été créé avec succès. "});
-          } else {
-            setMessage({type:"danger", message:"Un compte existe déjà avec cette adresse email."});
-          }
         } catch (err) {
           console.log(err);
+          setMessage({type:"danger", message:"Un compte existe déjà avec cette adresse email."});
         }
         
     }

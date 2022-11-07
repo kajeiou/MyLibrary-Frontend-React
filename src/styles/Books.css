@@ -1,7 +1,8 @@
 
-.Books row col {
-    max-width:"350px";
+ .Books .col-sm-3{
+    margin-bottom:5px;
 }
+
 
 #viewBook {
     border-bottom-right-radius:0;

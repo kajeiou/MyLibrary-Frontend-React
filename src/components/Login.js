@@ -2,7 +2,7 @@ import React,{ useEffect,useContext, useState } from 'react';
 import { useForm } from "react-hook-form"
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { login } from '../services/AuthApi';
+import { loginApi } from '../services/AuthApi';
 import { toast } from 'react-toastify';
 import UserC from '../contexts/UserC';
 
@@ -24,7 +24,7 @@ export default function Login() {
     const onSubmit = async dataForm => {
 
     try {
-        const response = await login(dataForm);
+        const response = await loginApi(dataForm);
         console.log(response)
         //setIsAuthenticated(response);
         setUserId(response)

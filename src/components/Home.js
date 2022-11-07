@@ -3,9 +3,34 @@ import React, { useEffect, useState, useContext } from 'react';
 import BookAdd from './BookAdd.js'
 import Books from './Books.js'
 import UserC from '../contexts/UserC';
+import { getAllBooks } from '../services/BookApi';
 
 export default function Home() {
     const {userId} = useContext(UserC)
+
+    const [books, setBooks]= useState([
+        {
+           bookName: "un livre"
+        },
+    ]);
+
+    useEffect(() => {
+        // GET request using fetch inside useEffect React hook
+        getAllBooks()
+            .then(data => setBooks(data));
+    }, []);
+
+    function addBook(newBook) {
+        setBooks([...books, newBook ])
+    }
+    function deleteBook(bookId) {
+        setBooks(current =>
+            current.filter(book => {
+              return book._id !== bookId;
+            }),
+        );
+    }
+
     return (
         
         <div className="Home">
@@ -13,7 +38,7 @@ export default function Home() {
             <div className='row'>
                 <div className='col-12'>
                     
-                    {userId ? <BookAdd/> : ''} {
+                    {userId ? <BookAdd addBook={addBook}/> : ''} {
                         
                     }
 
@@ -21,9 +46,8 @@ export default function Home() {
             </div>
             <br></br>
 
-            <Books/> 
+            <Books books={books} deleteBook={deleteBook}/> 
 
-            
         </div>
     )
 }

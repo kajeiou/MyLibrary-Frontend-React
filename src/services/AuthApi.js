@@ -1,6 +1,5 @@
 import jwtDecode from "jwt-decode"
 import { getItem, addItem, removeItem } from "./LocaleStorage"
-
 export function hasAuthenticated() {
     
     const token = getItem("MyLibraryToken")
@@ -15,7 +14,7 @@ export function hasAuthenticated() {
     
 }
 
-export async function login(dataForm) {
+export async function loginApi(dataForm) {
     
     return await fetch("http://localhost:2000/users/login", {
         method: "POST",
@@ -31,6 +30,22 @@ export async function login(dataForm) {
     .then(response => response.json())
     .then(data => {addItem('MyLibraryToken', data.token);addItem('MyLibraryUserId', data.userId); return data.userId;});
 
+}
+export async function registerApi(dataForm) {
+    const userName = dataForm.userName.charAt(0).toUpperCase() + dataForm.userName.slice(1);
+    return await fetch("http://localhost:2000/users/register", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            userName: userName,
+            email: dataForm.email,
+            password: dataForm.password,
+            isAdmin: false
+        }),
+    });
 }
 export function getToken() {
     return getItem("MyLibraryToken")
