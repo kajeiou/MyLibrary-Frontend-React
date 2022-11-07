@@ -12,7 +12,6 @@ import MyProfile from './MyProfile';
 import Footer from './Footer';
 import UserC from '../contexts/UserC';
 
-
 function App() {
 
   const[userId, setUserId] = useState(hasAuthenticated())
@@ -26,6 +25,7 @@ function App() {
         </script>
 
         <Menu/>
+
         
         <div className="container text-center">
           <Routes>
@@ -38,6 +38,7 @@ function App() {
           <Footer/>
         </div>
       </div>
+      
       <ToastContainer />
     </UserC.Provider>
     
