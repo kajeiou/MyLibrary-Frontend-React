@@ -1,16 +1,23 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../styles/App.css';
 import Menu from './Menu.js'
-import { Route, Routes } from 'react-router-dom';
-import Register from './Register';
-import Login from './Login';
-import Home from './Home';
+
 import { useState } from 'react';
 import { hasAuthenticated } from '../services/AuthApi';
-import MyProfile from './MyProfile';
-import Footer from './Footer';
 import UserC from '../contexts/UserC';
+
+import React from 'react';
+import '../styles/App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Navbar from './Navbar';
+import Foot from './Foot';
+
+import Home from './Home';
+import Register from './Register';
+import Login from './Login';
+import MyProfile from './MyProfile';
+
 
 function App() {
 
@@ -18,25 +25,25 @@ function App() {
 
   return (
     <UserC.Provider value={{userId, setUserId}} >
+        <video autoPlay loop muted id='video'>
+          <source src='/videos/video-1.mp4' type='video/mp4'/>
+        </video>
       <div className='App'>
         <script>
             <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
             <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         </script>
 
-        <Menu/>
-
-        
-        <div className="container text-center">
+        <Navbar/>              
           <Routes>
             <Route path="/" element={<Home/>} />
+            <Route path="/myprofile" element={<MyProfile />} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
-            <Route path="/myprofile" element={<MyProfile />} />
           </Routes>
           <br></br>
-          <Footer/>
-        </div>
+          <Foot/>
+        
       </div>
       
       <ToastContainer />
