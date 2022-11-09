@@ -42,7 +42,7 @@ export default function Login() {
         <div className="container w-75">
             <div className="Register">
                 <div className="card">
-                    <h5 className="card-header">Connexion</h5>
+                    <h5 className="card-header text-center">Connexion</h5>
                     {message
                     ?
                     <div className={"alert alert-"+message.type} role="alert">
@@ -52,7 +52,7 @@ export default function Login() {
                     ''
                     }
                     <div className="card-body">
-                        <h5 className="card-title">Nouveau membre ? <Link to="../register" className='btn btn-secondary'>Inscrivez vous!</Link></h5>
+                        <h5 className="card-title text-center">Nouveau membre ? <Link to="../register" className='btn btn-secondary'>Inscrivez vous!</Link></h5>
                         <br/>
                         <form onSubmit={handleSubmit(onSubmit)}>
                     
