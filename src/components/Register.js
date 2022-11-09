@@ -39,7 +39,7 @@ export default function Register() {
         <div className="container w-75">
             <div className="Register">
                 <div className="card">
-                    <h5 className="card-header">Inscription</h5>
+                    <h5 className="card-header text-center">Inscription</h5>
                     {message
                     ?
                     <div className={"alert alert-"+message.type} role="alert">
@@ -49,7 +49,7 @@ export default function Register() {
                     ''
                     }
                     <div className="card-body">
-                        <h5 className="card-title">Déjà inscrit ? <Link to="../login" className='btn btn-secondary' >
+                        <h5 className="card-title text-center">Déjà inscrit ? <Link to="../login" className='btn btn-secondary' >
                             
                             Connectez vous!</Link></h5>
                         <br/>
@@ -78,9 +78,9 @@ export default function Register() {
 
                             
                             <br/>
-                            <div className="form-group row">
+                            <div className="form-group row " >
                                 <label htmlFor="password" className="col-sm-2 col-form-label">Mot de passe</label>
-                                <div className="col-sm-10">
+                                <div className="col-sm-10 ">
                                     <input name="password" type="password" className="form-control" id="password" aria-describedby="passwordHelp" placeholder="Entrez un mot de passe" {...register("password", {required:'Mot de passe obligatoire', minLength: 6, 
                                         pattern: 
                                             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
@@ -94,7 +94,7 @@ export default function Register() {
                                     {errors.password && errors.password.type === "pattern" && <p className="text-white bg-danger">
                                         Mot de passe sans chiffre ou majuscule
                                     </p>}
-                                    <small id="passwordHelp" className="form-text text-muted">Minimum 6 caractères, un chiffre, et une majuscule</small>
+                                    <small id="passwordHelp" className="form-text text-muted ">Minimum 6 caractères, un chiffre, et une majuscule</small>
                                 </div>
                             </div>
                         
