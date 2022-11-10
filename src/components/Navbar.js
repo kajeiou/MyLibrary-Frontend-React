@@ -6,7 +6,7 @@ import { logout } from '../services/AuthApi';
 import { toast } from 'react-toastify';
 import UserC from '../contexts/UserC';
 
-import './Navbar.css';
+import '../styles/Navbar.css';
 import React, { useState } from 'react';
 
 function Navbar() {
