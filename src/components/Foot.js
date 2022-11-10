@@ -62,7 +62,7 @@ function Footer() {
         <div className='social-media-wrap'>
           <div className='footer-logo'>
             <Link to='/' className='social-logo'>
-              My Library 
+              MyLibrary 
             </Link>
           </div>
           <small className='website-rights'>My Library © 2022</small>
