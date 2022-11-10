@@ -75,7 +75,7 @@ export default function BookEdit(props) {
                     <div className="card-body">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group row">
-                                <label htmlFor="bookName" className="col col-form-label">Nom du livre</label>
+                                <label htmlFor="bookName" className="col col-form-label">Nom</label>
                                 <div className="col-8 text-center">
                                     <input name="bookName" type="text" className="form-control" id="bookName" aria-describedby="bookNameHelp" placeholder="Entrez un nom" {...register("bookName", {required:'Nom du livre obligatoire'})}  />
                                     {errors.bookName && errors.bookName.type === "required" && <p className="text-white bg-danger ">
@@ -107,9 +107,15 @@ export default function BookEdit(props) {
                             <div className="form-group row">
                                 <label htmlFor="stock" className="col col-form-label">ISBN </label>
                                 <div className="col-8 text-center">
-                                    <input name="isbn" type="text" className="form-control" id="isbn" aria-describedby="bookStockHelp" placeholder="Entrez un ISBN" {...register("isbn", {required:'ISBN du livre obligatoire'})}  />
+                                    <input name="isbn" type="text" className="form-control" id="isbn" aria-describedby="bookStockHelp" placeholder="Entrez un ISBN" {...register("isbn", {required:'ISBN du livre obligatoire', minLength: 10, maxLength:11})}  />
                                     {errors.isbn && errors.isbn.type === "required" && <p className="text-white bg-danger ">
                                         ISBN non renseigné
+                                    </p>}
+                                    {errors.isbn && errors.isbn.type === "minLength" && <p className="text-white bg-danger">
+                                        ISBN trop court (10 caractères minimum)
+                                    </p>}
+                                    {errors.isbn && errors.isbn.type === "maxLength" && <p className="text-white bg-danger">
+                                        ISBN trop long (10 caractères minimum)
                                     </p>}
                                 </div>
                             </div>

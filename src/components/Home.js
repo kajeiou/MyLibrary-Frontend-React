@@ -10,7 +10,7 @@ export default function Home() {
 
     const [books, setBooks]= useState([
         {
-           bookName: "un livre"
+           bookName: "Un livre vide"
         },
     ]);
 

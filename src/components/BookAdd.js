@@ -110,9 +110,15 @@ export default function BookAdd(props) {
                             <div className="form-group row">
                                 <label htmlFor="stock" className="col col-form-label">ISBN </label>
                                 <div className="col-8 text-center">
-                                    <input name="isbn" type="text" className="form-control" id="isbn" aria-describedby="bookStockHelp" placeholder="Entrez un ISBN" {...register("isbn", {required:'ISBN du livre obligatoire'})}  />
+                                    <input name="isbn" type="text" className="form-control" id="isbn" aria-describedby="bookStockHelp" placeholder="Entrez un ISBN" {...register("isbn", {required:'ISBN du livre obligatoire', minLength: 10, maxLength:11})}  />
                                     {errors.isbn && errors.isbn.type === "required" && <p className="text-white bg-danger ">
                                         ISBN non renseigné
+                                    </p>}
+                                    {errors.isbn && errors.isbn.type === "minLength" && <p className="text-white bg-danger">
+                                        ISBN trop court (10 caractères minimum)
+                                    </p>}
+                                    {errors.isbn && errors.isbn.type === "maxLength" && <p className="text-white bg-danger">
+                                        ISBN trop long (11 caractères maximum)
                                     </p>}
                                 </div>
                             </div>
