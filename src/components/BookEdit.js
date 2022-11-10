@@ -4,7 +4,6 @@ import { useForm  } from "react-hook-form";
 import { toast } from 'react-toastify';
 
 export default function BookEdit(props) {
-    console.log(props.book)
          
     const { register, handleSubmit, formState: { errors }} = useForm({
         defaultValues: {

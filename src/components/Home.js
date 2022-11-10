@@ -36,7 +36,7 @@ export default function Home() {
         <div className="Home">
             <br/>
             <div className='row'>
-                <div className='col-12'>
+                <div className='col-12 text-center'>
                     
                     {userId ? <BookAdd addBook={addBook}/> : ''} {
                         

@@ -17,7 +17,7 @@ import Home from './Home';
 import Register from './Register';
 import Login from './Login';
 import MyProfile from './MyProfile';
-
+import Users from './Users.js';
 
 function App() {
 
@@ -40,6 +40,7 @@ function App() {
             <Route path="/myprofile" element={<MyProfile />} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/users" element={<Users/>} />
           </Routes>
           <br></br>
           <Foot/>
