@@ -38,8 +38,6 @@ export default function Users() {
     return(
         <div className="container">
             <div className="Users">
-                Liste des utilisateurs
-                <br/>
                 <div className='row'>
                     {users.map((user, index) => 
                     
