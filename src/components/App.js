@@ -1,6 +1,5 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Menu from './Menu.js'
 
 import { useState } from 'react';
 import { hasAuthenticated } from '../services/AuthApi';
