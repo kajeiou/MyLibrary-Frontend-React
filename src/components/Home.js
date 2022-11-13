@@ -37,7 +37,6 @@ export default function Home() {
     return (
         
         <div className="Home">
-            <br/>
             <div className='row'>
                 <div className='col-12 text-center'>
                     
