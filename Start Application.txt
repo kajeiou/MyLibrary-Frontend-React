@@ -1,0 +1,1 @@
+To launch my app, start the back-end, and run with the command: npm start
