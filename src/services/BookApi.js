@@ -33,7 +33,6 @@ export async function deleteBookApi(bookId, token) {
 }
 
 export async function updateBookApi(bookId, token, dataForm) {
-  console.log(bookId, token, dataForm)
 
   return await fetch('http://localhost:2000/books/' + bookId, {
       method: "PUT",

@@ -21,6 +21,7 @@ export async function getAllUsers(token) {
     .then(response => response.json());
 }
 
+
 export async function deleteUserApi(userId, token) {
   return await fetch('http://localhost:2000/users/' + userId, {
       method: "DELETE",
@@ -30,4 +31,22 @@ export async function deleteUserApi(userId, token) {
         'Authorization': 'Bearer ' + token,
       },
     });  
+}
+
+export async function updateUserApi(userId, token, dataForm) {
+
+  console.log(userId, token, dataForm)
+  return await fetch('http://localhost:2000/users/' + userId, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      },
+      body: JSON.stringify({
+        email: dataForm.email,
+        isAdmin: dataForm.isAdmin,
+      }),
+  });  
+  
 }
