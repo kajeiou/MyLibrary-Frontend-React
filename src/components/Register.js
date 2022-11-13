@@ -1,6 +1,5 @@
 import React,{ useEffect,useContext, useState } from 'react';
 import { useForm,  } from "react-hook-form"
-import '../styles/Register.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import UserC from '../contexts/UserC';

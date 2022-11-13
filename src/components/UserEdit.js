@@ -35,11 +35,10 @@ export default function UserEdit(props) {
     const onSubmit = async dataForm => {
         try {
             const response = await updateUserApi(props.userSelected._id,getToken(), dataForm);
-            console.log(response)
             
             toast.success("L'utilisateur a été modifié")
             setIsOpen(false);
-            //closeModal();
+            closeModal();
             
     
         } catch ({ response }) {

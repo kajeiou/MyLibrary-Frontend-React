@@ -6,7 +6,7 @@ import { updateUserApi } from '../services/UserApi';
 import { getToken } from '../services/AuthApi';
 
 export default function EditerProfil(props) {
-         
+    // Initialisation du formulaire
     const { register, handleSubmit, formState: { errors }} = useForm({
         defaultValues: {
             email: props.user.email,
@@ -14,6 +14,7 @@ export default function EditerProfil(props) {
         }
       });
     const [modalIsOpen, setIsOpen] = useState(false);
+    // Erreur formulaire
     const [message, setMessage] = useState(0)
 
     function openModal() {
@@ -26,7 +27,6 @@ export default function EditerProfil(props) {
     const onSubmit = async dataForm => {
         try {
             const response = await updateUserApi(props.user._id,getToken(), dataForm);
-            console.log(response)
             
             toast.success("Le profil a été modifié")
             closeModal();

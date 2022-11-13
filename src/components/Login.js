@@ -35,8 +35,6 @@ export default function Login() {
 
     try {
         const response = await loginApi(dataForm);
-        console.log(response)
-        //setIsAuthenticated(response);
         setUserId(response)
         setMessage({type:"success", message:"Vous vous êtes connecté avec succès."})
         toast.success("Bienvenue ! Tu t'es connecté.")
