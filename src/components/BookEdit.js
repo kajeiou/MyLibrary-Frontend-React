@@ -2,6 +2,8 @@ import Modal from 'react-modal';
 import React, {  useState } from 'react';
 import { useForm  } from "react-hook-form";
 import { toast } from 'react-toastify';
+import { updateBookApi } from '../services/BookApi';
+import { getToken } from '../services/AuthApi';
 
 export default function BookEdit(props) {
          
@@ -26,6 +28,8 @@ export default function BookEdit(props) {
     }
     const onSubmit = async dataForm => {
         try {
+            const response = await updateBookApi(props.book._id,getToken(), dataForm);
+            console.log(response)
             
             toast.success("Le livre a été modifié")
             //closeModal();
