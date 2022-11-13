@@ -6,17 +6,24 @@ import { getUser, getAllUsers } from '../services/UserApi';
 import '../styles/Users.css';
 import UserDelete from "./UserDelete";
 import UserEdit from "./UserEdit";
+
 export default function Users() {
+
+    // Variable utilisateur
     const {userId} = useContext(UserC)
+    // Pour la rédirection
     const navigate = useNavigate();
+    // Variable utilisateur
     const [user, setUser]= useState([null]);
 
+    // Initialisation de la liste de tous les utilisateurs
     const [users, setUsers]= useState([
         {
            name: "Un user"
         },
     ]);
 
+    // Récupération de tous les utilisateurs avec l'API
     useEffect( ()=> {
         if(!userId) {
             navigate("/login", { replace: true })
@@ -27,6 +34,8 @@ export default function Users() {
             .then(data => setUsers(data));
     },[navigate,userId])
 
+
+    // Retrait d'un utilisateur de la liste
     function deleteUser(userId) {
         setUsers(current =>
             current.filter(user => {

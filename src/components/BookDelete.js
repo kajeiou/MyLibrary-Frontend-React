@@ -6,6 +6,8 @@ import { deleteBookApi } from '../services/BookApi';
 import { getToken } from '../services/AuthApi';
 
 export default function BookDelete(props) {
+    
+    // Utilisateur connecté
     const {userId, setUserId} = useContext(UserC)
     const [modalIsOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState(0)

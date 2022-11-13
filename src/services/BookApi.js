@@ -1,8 +1,9 @@
+// Récupération de tous les livres
 export async function getAllBooks() {
   return await fetch('http://localhost:2000/books')
     .then(response => response.json());
 }
-
+// Création d'un livre
 export async function createBookApi(token,dataForm) {
     return await fetch('http://localhost:2000/books/create', {
         method: "POST",
@@ -21,6 +22,8 @@ export async function createBookApi(token,dataForm) {
       })
     .then(response => response.json());  
 }
+
+// Suppression d'un livre
 export async function deleteBookApi(bookId, token) {
   return await fetch('http://localhost:2000/books/' + bookId, {
       method: "DELETE",
@@ -32,6 +35,7 @@ export async function deleteBookApi(bookId, token) {
     });  
 }
 
+// Mise à jour d'un livre
 export async function updateBookApi(bookId, token, dataForm) {
 
   return await fetch('http://localhost:2000/books/' + bookId, {

@@ -6,9 +6,10 @@ import { deleteUserApi } from '../services/UserApi';
 import { getToken } from '../services/AuthApi';
 
 export default function UserDelete(props) {
+
+    // Variable utilisateur
     const {userId, setUserId} = useContext(UserC)
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [message, setMessage] = useState(0)
 
     function openModal() {
         setIsOpen(true);
@@ -27,7 +28,6 @@ export default function UserDelete(props) {
     
         } catch (error) {
             console.log("erreur" + error)
-            //setMessage({type:"danger", message:"Une erreur est survenue"})
         }
     }
         

@@ -3,6 +3,8 @@ import { Navigate, Route,Routes } from "react-router-dom";
 import Auth from "../contexts/Auth";
 
 export default function AuthenticatedRoute(path, component) {
+
+    // Contexte utilisateur connecté
     const {isAuthenticated} = useContext(Auth)
 
     return isAuthenticated ? (

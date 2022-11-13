@@ -20,6 +20,7 @@ import Users from './Users.js';
 
 function App() {
 
+  // Variable utilisateur
   const[userId, setUserId] = useState(hasAuthenticated())
 
   return (

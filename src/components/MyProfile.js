@@ -5,11 +5,15 @@ import { getToken } from '../services/AuthApi';
 import { getUser } from '../services/UserApi';
 
 export default function MyProfile() {
-    //const {isAuthenticated} = useContext(Auth)
+    // Variable utilisateur
     const {userId} = useContext(UserC)
+
+    // Pour rédiriger
     const navigate = useNavigate();
+
     const [user, setUser]= useState([null]);
 
+    // Rédirection si l'utilisateur n'est pas connecté
     useEffect( ()=> {
         if(!userId) {
             navigate("/login", { replace: true })

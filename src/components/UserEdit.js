@@ -8,6 +8,7 @@ import { getToken } from '../services/AuthApi';
 
 export default function UserEdit(props) {
 
+    // Initialisation du formulaire
     const { register, handleSubmit, formState: { errors }} = useForm({
         defaultValues: {
             email: props.userSelected.email,
@@ -15,8 +16,11 @@ export default function UserEdit(props) {
         }
     });
 
+
+    // Variable utilisateur
     const {userId, setUserId} = useContext(UserC)
     const [modalIsOpen, setIsOpen] = useState(false);
+    // Erreur formulaire
     const [message, setMessage] = useState(0)
 
     function openModal() {
@@ -27,6 +31,7 @@ export default function UserEdit(props) {
         setIsOpen(false);
     }
 
+    // Traitement du formulaire
     const onSubmit = async dataForm => {
         try {
             const response = await updateUserApi(props.userSelected._id,getToken(), dataForm);

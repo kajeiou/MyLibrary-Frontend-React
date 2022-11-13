@@ -8,9 +8,14 @@ import { registerApi } from '../services/AuthApi';
 import { toast } from 'react-toastify';
 
 export default function Register() {
+
+    // Variable utilisateur
     const {userId} = useContext(UserC)
+    // Pour faire la rédirection
     const navigate = useNavigate();
+    // Initialisation du formulaire
     const { register, handleSubmit, formState: { errors } } = useForm();
+    // Erreurs fomulaires
     const [message, setMessage] = useState(0)
 
 

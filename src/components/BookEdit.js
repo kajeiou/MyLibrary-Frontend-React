@@ -6,7 +6,9 @@ import { updateBookApi } from '../services/BookApi';
 import { getToken } from '../services/AuthApi';
 
 export default function BookEdit(props) {
-         
+    
+
+    //Initialisation du formulaire
     const { register, handleSubmit, formState: { errors }} = useForm({
         defaultValues: {
           bookName: props.book.bookName,

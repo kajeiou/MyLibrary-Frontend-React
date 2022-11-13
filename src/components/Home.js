@@ -8,6 +8,7 @@ import { getAllBooks } from '../services/BookApi';
 export default function Home() {
     const {userId} = useContext(UserC)
 
+    // Initialisation de la liste des livres 
     const [books, setBooks]= useState([
         {
            bookName: "Un livre vide"
@@ -15,14 +16,16 @@ export default function Home() {
     ]);
 
     useEffect(() => {
-        // GET request using fetch inside useEffect React hook
+        // Récupération de tous les livres depuis l'API
         getAllBooks()
             .then(data => setBooks(data));
     }, []);
 
+    // Mise à jour de la liste des livres
     function addBook(newBook) {
         setBooks([...books, newBook ])
     }
+    // Suppression d'un élément de la liste des livres
     function deleteBook(bookId) {
         setBooks(current =>
             current.filter(book => {

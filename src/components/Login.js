@@ -7,12 +7,20 @@ import { toast } from 'react-toastify';
 import UserC from '../contexts/UserC';
 
 export default function Login() {
+
+    // Variable utilisateur
     const {userId, setUserId} = useContext(UserC)
     
+    // Pour rédiriger
     const navigate = useNavigate();
+
+    // Initialisation du formulaire
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    // Erreurs fomulaires
     const [message, setMessage] = useState(0)
 
+    //Si l'utilisateur est connecté, redirection vers so profil
     useEffect( ()=> {
         if(userId) {
             setTimeout(function(){
@@ -21,6 +29,8 @@ export default function Login() {
         }
     },[navigate,userId])
 
+
+    // Traitement du formulaire de connexion
     const onSubmit = async dataForm => {
 
     try {

@@ -3,6 +3,7 @@ import '../styles/Foot.css';
 import { Link } from 'react-router-dom';
 
 function Footer() {
+  
   return (
     <div className='footer-container'>
       <section className='footer-subscription'>
